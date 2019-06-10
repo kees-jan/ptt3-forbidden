@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "compileCommands": "${workspaceFolder}/compile_commands.json",
+            "intelliSenseMode": "clang-x64",
+            "includePath": [
+                "${workspaceFolder}/library/inc",
+                "/home/kees-jan/src/ptt3-forbidden/library/inc"
+            ]
+        }
+    ],
+    "version": 4
+}
