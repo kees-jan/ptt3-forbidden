@@ -4,32 +4,9 @@
 
 #include "gtest/gtest.h"
 
+#include "helpers.h"
+
 using namespace ptt3::forbidden;
-
-#define UNUSED(x) ((void)(x))
-
-class C
-{
-public:
-  explicit C(bool& b) : isAlive(b) { isAlive = true; }
-
-  ~C() { isAlive = false; }
-
-  const C* address() const { return this; }
-
-private:
-  bool& isAlive;
-};
-
-TEST(sanity_tests, lifetime_is_recorded)
-{
-  bool isAlive = false;
-  {
-    C c(isAlive);
-    EXPECT_TRUE(isAlive);
-  }
-  EXPECT_FALSE(isAlive);
-}
 
 TEST(unique_ptr, is_default_constructible)
 {
@@ -42,7 +19,7 @@ TEST(unique_ptr, can_contain_pointer)
 {
   bool isAlive = false;
   {
-    unique_ptr p(new C(isAlive));
+    unique_ptr p(new RecordLifetime(isAlive));
     EXPECT_TRUE(isAlive);
     UNUSED(p);
   }
@@ -55,7 +32,7 @@ static_assert(!std::is_copy_assignable<unique_ptr<int>>::value);
 TEST(unique_ptr, is_move_constructible)
 {
   bool isAlive = false;
-  unique_ptr p1(new C(isAlive));
+  unique_ptr p1(new RecordLifetime(isAlive));
   {
     unique_ptr p2(std::move(p1));
     EXPECT_TRUE(isAlive);
@@ -68,9 +45,9 @@ TEST(unique_ptr, is_move_assignable)
 {
   bool isAlive1 = false;
   bool isAlive2 = false;
-  unique_ptr p1(new C(isAlive1));
+  unique_ptr p1(new RecordLifetime(isAlive1));
   {
-    unique_ptr p2(new C(isAlive2));
+    unique_ptr p2(new RecordLifetime(isAlive2));
     p1 = std::move(p2);
     EXPECT_FALSE(isAlive1);
   }
@@ -80,7 +57,7 @@ TEST(unique_ptr, is_move_assignable)
 TEST(unique_ptr, can_be_reset)
 {
   bool isAlive = false;
-  unique_ptr p(new C(isAlive));
+  unique_ptr p(new RecordLifetime(isAlive));
   EXPECT_TRUE(isAlive);
   p.reset();
   EXPECT_FALSE(isAlive);
@@ -89,11 +66,11 @@ TEST(unique_ptr, can_be_reset)
 TEST(unique_ptr, can_be_reset_with_value)
 {
   bool isAlive1 = false;
-  unique_ptr p(new C(isAlive1));
+  unique_ptr p(new RecordLifetime(isAlive1));
   EXPECT_TRUE(isAlive1);
 
   bool isAlive2 = false;
-  p.reset(new C(isAlive2));
+  p.reset(new RecordLifetime(isAlive2));
   EXPECT_FALSE(isAlive1);
   EXPECT_TRUE(isAlive2);
 }
@@ -113,8 +90,8 @@ TEST(unique_ptr, is_convertible_to_bool)
 TEST(unique_ptr, is_dereferencable)
 {
   bool isAlive = false;
-  C* rp = new C(isAlive);
-  const unique_ptr<C> p(rp);
+  RecordLifetime* rp = new RecordLifetime(isAlive);
+  const unique_ptr<RecordLifetime> p(rp);
 
   EXPECT_EQ(rp, p.get());
   EXPECT_EQ(rp, &*p);

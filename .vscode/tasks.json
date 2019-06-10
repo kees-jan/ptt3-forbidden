@@ -14,6 +14,16 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Regenerate compile_commans.json",
+            "type": "shell",
+            "command": "make clean && bear make -k -j20",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build"
         }
+
     ]
 }

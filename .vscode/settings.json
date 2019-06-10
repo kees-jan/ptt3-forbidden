@@ -1,4 +1,13 @@
 {
+    "files.exclude": {
+        "**/*.a": true,
+        "**/*.d": true,
+        "**/*.o": true,
+        "**/*~": true,
+        "gtest": true,
+        "library/test/testForbidden": true,
+        "compile_commands.json": true
+    },
     "files.associations": {
         "type_traits": "cpp",
         "unique_ptr.h": "cpp"
@@ -31,4 +40,7 @@
         ]
     },
     "gtest-adapter.supportLocation": false,
+    "gtest-adapter.refreshAfterBuild": true,
+    "gtest-adapter.runAfterBuild": false,
+    "gtest-adapter.debugConfig": "Unittests",
 }
