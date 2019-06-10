@@ -4,7 +4,7 @@
 
 # Name of your library. It is always called libsomething.a, otherwise
 # the linker won't find it.
-LIB = libcalculator.a
+LIB = libforbidden.a
 
 # -I directives for the directories of your include files
 INCLUDE_LOCATIONS = -I../inc
@@ -14,7 +14,7 @@ SOURCES_LIB = $(wildcard *.cpp)
 
 #Don't change these
 CXX = g++
-CXXFLAGS += -ggdb3 -Wall -Wextra
+CXXFLAGS += -ggdb3 -Wall -Wextra -Wshadow -Werror -pedantic -std=c++1z
 CPPFLAGS += -D_REENTRANT -DDEBUG $(INCLUDE_LOCATIONS)
 OBJECTS_LIB = $(SOURCES_LIB:.cpp=.o)
 DEPENDENCY_FILES = $(addprefix .,$(OBJECTS_LIB:.o=.d))

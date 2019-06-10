@@ -1,0 +1,19 @@
+﻿BasedOnStyle: Google
+AccessModifierOffset: '-2'
+AlignAfterOpenBracket: Align
+BreakBeforeBraces: Custom
+BraceWrapping:
+  # AfterCaseLabel: true
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+NamespaceIndentation: All
+TabWidth: '2'
+UseTab: Never

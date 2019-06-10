@@ -4,7 +4,7 @@
 #   make test
 
 # Name of your test-executable
-EXEC = testCalculator
+EXEC = testForbidden
 
 # -I directives for the directories of your include files
 INCLUDE_LOCATIONS = -I. -I../inc
@@ -13,14 +13,14 @@ INCLUDE_LOCATIONS = -I. -I../inc
 LIBRARY_LOCATIONS = -L../../gtest -L../src
 
 # -l directives for the libaries you need (leave out the lib and the .a parts)
-LINKED_LIBRARIES = -lgtest -lgtest_main -lcalculator
+LINKED_LIBRARIES = -lgtest -lgtest_main -lforbidden
 
 # Name of your sources
 SOURCES = $(wildcard *.cpp)
 
 #Don't change these
 CXX = g++
-CXXFLAGS += -ggdb3 -Wall -Wextra
+CXXFLAGS += -ggdb3 -Wall -Wextra -Wshadow -Werror -pedantic -std=c++1z
 CPPFLAGS += -D_REENTRANT -DDEBUG $(INCLUDE_LOCATIONS)
 OBJECTS = $(SOURCES:.cpp=.o)
 DEPENDENCY_FILES = $(addprefix .,$(OBJECTS:.o=.d))

@@ -3,7 +3,8 @@
 /gtest
 *~
 .*.d
+compile_commands.json
+.vscode/ipch
 
 # Add your executables here, so git will ignore them
-/application/src/calculator
-/library/test/testCalculator
+/library/test/testForbidden
