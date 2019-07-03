@@ -2,6 +2,7 @@
 
 #include <cstddef>
 #include <functional>
+#include <atomic>
 
 namespace ptt3::forbidden
 {
@@ -27,7 +28,7 @@ namespace ptt3::forbidden
       static shared_data* create();
 
     private:
-      size_t refCount;
+      std::atomic_size_t refCount;
       std::function<void()> deleter;
     };
 
