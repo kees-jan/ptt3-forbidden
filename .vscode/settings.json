@@ -1,4 +1,5 @@
 {
+    "editor.codeLens": true,
     "files.exclude": {
         "**/*.a": true,
         "**/*.d": true,
@@ -10,7 +11,8 @@
     },
     "files.associations": {
         "type_traits": "cpp",
-        "unique_ptr.h": "cpp"
+        "unique_ptr.h": "cpp",
+        "condition_variable": "cpp"
     },
     "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.default.intelliSenseMode": "clang-x64",
@@ -41,6 +43,7 @@
     },
     "gtest-adapter.supportLocation": false,
     "gtest-adapter.refreshAfterBuild": true,
-    "gtest-adapter.runAfterBuild": false,
+    "gtest-adapter.runAfterBuild": true,
     "gtest-adapter.debugConfig": "Unittests",
+    "gtest-adapter.showRunOutput": false,
 }

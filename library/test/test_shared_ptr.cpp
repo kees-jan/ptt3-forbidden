@@ -1,5 +1,4 @@
 #include "ptt3/shared_ptr.h"
-#include "ptt3/shared_ptr.h"
 
 #include <type_traits>
 
